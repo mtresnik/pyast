@@ -1,7 +1,7 @@
 import math
 import numbers
 
-from pyast import Operation
+from pyast.operation import Operation
 
 
 class Constant(Operation):

@@ -1,4 +1,4 @@
-from pyast import *
+from pyast.operation import Operation
 
 
 class Addition(Operation):

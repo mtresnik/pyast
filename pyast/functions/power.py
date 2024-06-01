@@ -1,6 +1,6 @@
 import math
 
-from pyast import Operation
+from pyast.operation import Operation
 
 
 class Power(Operation):

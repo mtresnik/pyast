@@ -1,4 +1,4 @@
-from pyast.constant import *
+from pyast import *
 from pyast.functions import *
 
 
@@ -27,3 +27,14 @@ reserved = set(runtime_functions.keys())
 def add_function(name, num_params, func):
     runtime_functions[name] = FunctionBuilder(num_params, func)
     reserved.add(name)
+
+
+def build_function(name, params):
+    if name in runtime_functions:
+        builder = runtime_functions[name]
+        if len(params) >= builder.num_params:
+            return builder.func(params)
+    values = []
+    for char in name:
+        values.append(Variable(char))
+    return Multiplication(values)

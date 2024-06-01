@@ -33,3 +33,5 @@ class Constant(Operation):
 e = Constant(complex(math.e, 0), 'e')
 
 pi = Constant(complex(math.pi, 0), 'π')
+
+TEN = Constant(10)

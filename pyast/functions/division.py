@@ -36,4 +36,5 @@ class Division(Operation):
     def evaluate(self, one, other):
         if self == one:
             return other
-        return Division(numerator=self.numerator.evaluate(one, other), denominator=self.denominator.evaluate(one, other))
+        return Division(numerator=self.numerator.evaluate(one, other),
+                        denominator=self.denominator.evaluate(one, other))

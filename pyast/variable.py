@@ -1,7 +1,6 @@
 import math
 
 from pyast.operation import Operation
-import cmath
 
 
 class Variable(Operation):

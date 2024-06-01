@@ -1,6 +1,6 @@
 import math
 
-from pyast.operation import Operation
+from pyast import Operation
 
 
 class Variable(Operation):

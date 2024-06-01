@@ -1,7 +1,7 @@
 import cmath
 import math
 
-from pyast.operation import Operation
+from pyast import Operation
 
 
 class Cos(Operation):

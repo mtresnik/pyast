@@ -1,6 +1,6 @@
 import math
 
-from pyast.operation import Operation, all_constants, evaluate_values
+from pyast import Operation, all_constants, evaluate_values
 
 
 class Subtraction(Operation):

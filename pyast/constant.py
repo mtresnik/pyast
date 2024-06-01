@@ -1,4 +1,5 @@
 import math
+import numbers
 
 from pyast.operation import Operation
 
@@ -6,7 +7,10 @@ from pyast.operation import Operation
 class Constant(Operation):
     def __init__(self, representation, string_representation=None):
         super().__init__([])
-        self.representation = representation
+        if isinstance(representation, numbers.Complex):
+            self.representation = representation
+        else:
+            self.representation = complex(math.nan, math.nan)
         self.string_representation = string_representation
 
     def is_constant(self):

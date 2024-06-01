@@ -5,7 +5,7 @@ from timeit import default_timer as timer
 from pyast import util
 
 
-class TestMultithreadedContains(unittest.TestCase):
+class TestContainsAll(unittest.TestCase):
 
     def test_shuffled_arrays_single_threaded(self):
         input_list = [random.random() for i in range(10000)]

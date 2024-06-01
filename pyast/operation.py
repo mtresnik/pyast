@@ -83,3 +83,22 @@ def deep_flatten(operation):
     while has_nested_values(ret_list):
         ret_list = flatten(ret_list)
     return ret_list
+
+
+def all_constants(operation):
+    flattened = deep_flatten(operation)
+    for elem in flattened:
+        if not elem.is_constant():
+            return False
+    return True
+
+
+def _map_inner(a, one, other):
+    if a == one:
+        return other
+    return a.evaluate(one, other)
+
+
+def evaluate_values(a, one, other):
+    values = a.get_values()
+    return map(lambda elem: _map_inner(elem, one, other), values)

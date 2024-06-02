@@ -1,11 +1,11 @@
 import math
 
-from pyast.operation import Operation, all_constants, evaluate_values
+from pyast.operation import *
 
 
 class Subtraction(Operation):
     def __init__(self, values):
-        super().__init__(values)
+        super().__init__(*values)
 
     def is_constant(self):
         if len(self.values) == 0:

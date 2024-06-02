@@ -6,7 +6,7 @@ from pyast.operation import Operation
 class Power(Operation):
 
     def __init__(self, base, exponent):
-        super().__init__([base, exponent])
+        super().__init__(*[base, exponent])
         self.base = base
         self.exponent = exponent
 

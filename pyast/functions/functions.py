@@ -1,5 +1,7 @@
-from pyast import *
+from pyast.constant import *
 from pyast.functions import *
+from pyast.functions import Multiplication
+from pyast.variable import Variable
 
 
 class FunctionBuilder:

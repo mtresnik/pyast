@@ -34,4 +34,8 @@ e = Constant(complex(math.e, 0), 'e')
 
 pi = Constant(complex(math.pi, 0), 'π')
 
+i = Constant(complex(0, 1), "i")
+
+j = Constant(complex(0, 1), "j")
+
 TEN = Constant(10)

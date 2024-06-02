@@ -7,7 +7,7 @@ from pyast.operation import Operation
 class ArcCos(Operation):
 
     def __init__(self, inner):
-        super().__init__([inner])
+        super().__init__(*[inner])
         self.inner = inner
 
     def is_constant(self):

@@ -9,6 +9,11 @@ variable = 6
 plus = "+"
 minus = "-"
 
+decimal = "."
+valid_numbers = "0123456789."
+operators = "+-*/^"
+open_parenthesis_string = "("
+close_parenthesis_string = ")"
 
 class Token:
     def __init__(self, start_index, end_index, token_type, representation=None):

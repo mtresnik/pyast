@@ -7,7 +7,7 @@ from pyast.operation import Operation
 class Log(Operation):
 
     def __init__(self, base, inner):
-        super().__init__([base, inner])
+        super().__init__(*[base, inner])
         self.base = base
         self.inner = inner
 

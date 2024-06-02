@@ -96,13 +96,13 @@ def _tokenize_text(token_list, input_string: str):
     return ret_list
 
 
-def _tokenize_functions(token_list, input_string: str):
+def _tokenize_functions(token_list):
     ret_list = []
     for i, curr in enumerate(token_list):
         if curr.token_type != tokens.text:
             ret_list.append(curr)
             continue
-        if i < len(token_list) - 1 and token_list[i + 1].token_type == open_parenthesis:
+        if i < len(token_list) - 1 and token_list[i + 1].token_type == tokens.open_parenthesis:
             inner_func = ""
             found_inner = False
             representation = curr.representation
@@ -217,6 +217,6 @@ def tokenize(text: str):
     token_list = _tokenize_operators(token_list, input_string)
     token_list = _tokenize_parentheses(token_list, input_string)
     token_list = _tokenize_text(token_list, input_string)
-    token_list = _tokenize_functions(token_list, input_string)
+    token_list = _tokenize_functions(token_list)
     token_list = _tokenize_variables(token_list, input_string)
     return _post_process(token_list)

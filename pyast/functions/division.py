@@ -6,7 +6,7 @@ from pyast.operation import Operation
 class Division(Operation):
 
     def __init__(self, numerator, denominator):
-        super().__init__([numerator, denominator])
+        super().__init__(*[numerator, denominator])
         self.numerator = numerator
         self.denominator = denominator
 

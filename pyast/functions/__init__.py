@@ -13,3 +13,4 @@ from pyast.functions.power import *
 from pyast.functions.sin import *
 from pyast.functions.subtraction import *
 from pyast.functions.tan import *
+from pyast.functions.functions import *

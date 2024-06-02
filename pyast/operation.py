@@ -5,7 +5,10 @@ from pyast.util import contains_all
 
 class Operation(ABC):
     def __init__(self, *args):
-        self.values = filter(lambda a: isinstance(a, Operation), args)
+        self.values = []
+        for arg in args:
+            if isinstance(arg, Operation):
+                self.values.append(arg)
 
     def get_values(self):
         return self.values
@@ -101,4 +104,4 @@ def _map_inner(a, one, other):
 
 def evaluate_values(a, one, other):
     values = a.get_values()
-    return map(lambda elem: _map_inner(elem, one, other), values)
+    return list(map(lambda elem: _map_inner(elem, one, other), values))

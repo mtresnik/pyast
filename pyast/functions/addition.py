@@ -1,10 +1,12 @@
-from pyast.operation import Operation
+import math
+
+from pyast.operation import *
 
 
 class Addition(Operation):
 
     def __init__(self, values):
-        super().__init__(values)
+        super().__init__(*values)
 
     def is_constant(self):
         if len(self.values) == 0:
@@ -16,7 +18,7 @@ class Addition(Operation):
     def to_number(self):
         if not self.is_constant():
             return complex(math.nan, math.nan)
-        sum(map(lambda op: op.to_number(), self.values))
+        sum(list(map(lambda op: op.to_number(), self.values)))
 
     def to_string(self):
         return " + ".join(map(str, self.values))

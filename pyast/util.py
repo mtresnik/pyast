@@ -26,5 +26,5 @@ def find_remaining_strings(test, key):
     else:
         return [
             test[0:index],
-            test[index+len(key):]
+            test[index + len(key):]
         ]

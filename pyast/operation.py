@@ -33,6 +33,8 @@ class Operation(ABC):
         if self.is_constant():
             num = self.to_number()
             if num.imag == 0:
+                if num.real < 1e-10:
+                    num = 0
                 return str(num.real)
             return str(num).replace("j", "i")
         return self.to_string()

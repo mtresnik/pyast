@@ -1,11 +1,17 @@
 import math
+import numbers
 
+from pyast.constant import Constant
 from pyast.operation import Operation
 
 
 class Power(Operation):
 
     def __init__(self, base, exponent):
+        if isinstance(base, numbers.Complex):
+            base = Constant(base)
+        if isinstance(exponent, numbers.Complex):
+            exponent = Constant(exponent)
         super().__init__(*[base, exponent])
         self.base = base
         self.exponent = exponent

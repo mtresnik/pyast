@@ -1,11 +1,15 @@
 import cmath
 import math
+import numbers
 
+from pyast.constant import Constant
 from pyast.operation import Operation
 
 
 class ArcTan(Operation):
     def __init__(self, inner):
+        if isinstance(inner, numbers.Complex):
+            inner = Constant(inner)
         super().__init__(*[inner])
         self.inner = inner
 

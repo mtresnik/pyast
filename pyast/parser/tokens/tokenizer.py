@@ -13,7 +13,7 @@ def _pre_process(text: str):
 
 
 def _tokenize_numbers(input_string: str):
-    ret_array = []
+    ret_list = []
     accumulate = ""
     for i, v in enumerate(input_string):
         if v not in valid_numbers:
@@ -22,7 +22,7 @@ def _tokenize_numbers(input_string: str):
                 end = i - 1
                 representation = accumulate
                 number = tokens.Token(start, end, tokens.number, representation)
-                ret_array.append(number)
+                ret_list.append(number)
                 accumulate = ""
         else:
             accumulate += v
@@ -31,8 +31,8 @@ def _tokenize_numbers(input_string: str):
         end = len(input_string) - 1
         representation = accumulate
         number = tokens.Token(start, end, tokens.number, representation)
-        ret_array.append(number)
-    return ret_array
+        ret_list.append(number)
+    return ret_list
 
 
 def _tokenize_operators(token_list, input_string: str):
@@ -160,7 +160,7 @@ def _max_variables_in_string(input_string):
     return ret_list
 
 
-def _tokenize_variables(token_list, input_string: str):
+def _tokenize_variables(token_list):
     ret_list = []
     for curr in token_list:
         if curr.token_type != tokens.text:
@@ -175,7 +175,8 @@ def _justify_mutliplication(input_list):
     for i, curr in enumerate(input_list):
         ret_list.append(curr)
         if curr.token_type == tokens.number or curr.token_type == tokens.variable or curr.token_type == tokens.close_parenthesis:
-            if i < len(input_list) - 1 and input_list[i + 1].token_type != tokens.operator and input_list[i + 1].token_type != tokens.close_parenthesis:
+            if i < len(input_list) - 1 and input_list[i + 1].token_type != tokens.operator and input_list[
+                i + 1].token_type != tokens.close_parenthesis:
                 representation = "*"
                 ret_list.append(tokens.null_index(tokens.operator, representation))
     return ret_list
@@ -190,7 +191,9 @@ def _collapse_signs(input_list):
         next_representation = ""
         if i < len(input_list) - 1:
             next_representation = input_list[i + 1].representation
-        if curr.token_type == tokens.operator and i < len(input_list) - 1 and input_list[i + 1].token_type == tokens.operator and (curr_representation == "+" or next_representation == "-") and (next_representation == "-" or curr_representation == "+"):
+        if curr.token_type == tokens.operator and i < len(input_list) - 1 and input_list[
+            i + 1].token_type == tokens.operator and (curr_representation == "+" or next_representation == "-") and (
+                next_representation == "-" or curr_representation == "+"):
             representation = "+"
             if curr_representation != next_representation:
                 representation = "-"
@@ -218,5 +221,5 @@ def tokenize(text: str):
     token_list = _tokenize_parentheses(token_list, input_string)
     token_list = _tokenize_text(token_list, input_string)
     token_list = _tokenize_functions(token_list)
-    token_list = _tokenize_variables(token_list, input_string)
+    token_list = _tokenize_variables(token_list)
     return _post_process(token_list)

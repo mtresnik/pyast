@@ -1,11 +1,17 @@
 import math
+import numbers
 
+from pyast.constant import Constant
 from pyast.operation import Operation
 
 
 class Division(Operation):
 
     def __init__(self, numerator, denominator):
+        if isinstance(numerator, numbers.Complex):
+            numerator = Constant(numerator)
+        if isinstance(denominator, numbers.Complex):
+            denominator = Constant(denominator)
         super().__init__(*[numerator, denominator])
         self.numerator = numerator
         self.denominator = denominator

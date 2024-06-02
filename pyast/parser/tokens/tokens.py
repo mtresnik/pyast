@@ -15,6 +15,7 @@ operators = "+-*/^"
 open_parenthesis_string = "("
 close_parenthesis_string = ")"
 
+
 class Token:
     def __init__(self, start_index, end_index, token_type, representation=None):
         self.start_index = start_index

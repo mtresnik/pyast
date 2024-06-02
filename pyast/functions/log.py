@@ -1,12 +1,18 @@
 import cmath
 import math
+import numbers
 
+from pyast.constant import Constant
 from pyast.operation import Operation
 
 
 class Log(Operation):
 
     def __init__(self, base, inner):
+        if isinstance(base, numbers.Complex):
+            base = Constant(base)
+        if isinstance(inner, numbers.Complex):
+            inner = Constant(inner)
         super().__init__(*[base, inner])
         self.base = base
         self.inner = inner

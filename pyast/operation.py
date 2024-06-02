@@ -31,7 +31,10 @@ class Operation(ABC):
 
     def __str__(self):
         if self.is_constant():
-            return str(self.to_number())
+            num = self.to_number()
+            if num.imag == 0:
+                return str(num.real)
+            return str(num).replace("j", "i")
         return self.to_string()
 
     def __eq__(self, other):

@@ -18,7 +18,7 @@ class Addition(Operation):
     def to_number(self):
         if not self.is_constant():
             return complex(math.nan, math.nan)
-        sum(list(map(lambda op: op.to_number(), self.values)))
+        return sum(list(map(lambda op: op.to_number(), self.values)))
 
     def to_string(self):
         return " + ".join(map(str, self.values))

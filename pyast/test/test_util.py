@@ -17,6 +17,10 @@ class TestContainsAll(unittest.TestCase):
         end = timer()
         print(end - start)
 
+    def test_find_remainder(self):
+        base_string = "iabei"
+        print(util.find_remaining_strings(base_string, "ab"))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -22,7 +22,7 @@ class TestParser(unittest.TestCase):
         print("test_parser_addition", str(operation))
 
     def test_parser_multiplication(self):
-        operation = parse("a * b * c + abc")
+        operation = parse("a * b * c + iabei")
         print("test_parser_multiplication", str(operation))
 
     def test_parser_functions_of_functions(self):

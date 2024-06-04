@@ -38,7 +38,6 @@ def _tokenize_numbers(input_string: str):
 def _tokenize_operators(token_list, input_string: str):
     ret_list = []
     ret_list.extend(token_list)
-    ret_list.sort(key=lambda x: x.start_index)
     for i, v in enumerate(input_string):
         if not tokens.index_processed(i, ret_list):
             if v in operators:
@@ -46,14 +45,12 @@ def _tokenize_operators(token_list, input_string: str):
                 operator = tokens.single_index(i, tokens.operator)
                 operator.representation = representation
                 ret_list.append(operator)
-    ret_list.sort(key=lambda x: x.start_index)
     return ret_list
 
 
 def _tokenize_parentheses(token_list, input_string: str):
     ret_list = []
     ret_list.extend(token_list)
-    ret_list.sort(key=lambda x: x.start_index)
     for i, v in enumerate(input_string):
         if not tokens.index_processed(i, ret_list):
             if v in open_parenthesis:
@@ -66,14 +63,12 @@ def _tokenize_parentheses(token_list, input_string: str):
                 parenthesis = tokens.single_index(i, tokens.close_parenthesis)
                 parenthesis.representation = representation
                 ret_list.append(parenthesis)
-    ret_list.sort(key=lambda x: x.start_index)
     return ret_list
 
 
 def _tokenize_text(token_list, input_string: str):
     ret_list = []
     ret_list.extend(token_list)
-    ret_list.sort(key=lambda x: x.start_index)
     accumulated = ""
     for i, v in enumerate(input_string):
         if tokens.index_processed(i, ret_list):
@@ -149,7 +144,7 @@ def _max_variables_in_string(input_string):
         ret_list.extend(left_hand_side)
         ret_list.append(tokens.null_index(tokens.variable, max_var))
         return ret_list
-    if len(remaining_strings) == 1:
+    if len(remaining_strings) == 2:
         left_hand_side = _max_variables_in_string(remaining_strings[0])
         right_hand_side = _max_variables_in_string(remaining_strings[1])
         ret_list.extend(left_hand_side)

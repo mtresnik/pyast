@@ -19,6 +19,11 @@ class Constant(Operation):
     def to_number(self):
         return self.representation
 
+    def __str__(self):
+        if self.string_representation is not None:
+            return self.string_representation
+        return super().__str__()
+
     def to_string(self):
         if self.string_representation is not None:
             return self.string_representation

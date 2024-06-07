@@ -11,7 +11,7 @@ minus = "-"
 
 decimal = "."
 valid_numbers = "0123456789."
-operators = "+-*/^"
+operators = "+-*/^,"
 open_parenthesis_string = "("
 close_parenthesis_string = ")"
 

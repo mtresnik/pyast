@@ -1,6 +1,6 @@
 from pyast.constant import *
 from pyast.functions import *
-from pyast.functions import Multiplication
+from pyast.functions import Multiplication, Sin
 from pyast.variable import Variable
 
 

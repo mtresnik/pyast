@@ -1,3 +1,4 @@
+import math
 from abc import ABC, abstractmethod
 
 from pyast import variables, constant
@@ -295,8 +296,7 @@ def _generate_functions(current, input_list):
 
 
 def _generate_variables(current, input_list):
-    ret_list = []
-    ret_list.extend(current)
+    ret_list = current
     for i, token in enumerate(input_list):
         if not _index_processed_token(i, current):
             if token.token_type == tokens.variable:
@@ -379,15 +379,13 @@ def _generate_identities(current, input_list):
                         clone.remove(right)
                         clone.append(_INegation(i, right.end_index, right))
 
-    ret_list = []
-    ret_list.extend(clone)
+    ret_list = clone
     ret_list.sort(key=lambda x: x.start_index)
     return ret_list
 
 
 def _generate_powers(current, input_list):
-    clone = []
-    clone.extend(current)
+    clone = current
     for i, token in enumerate(input_list):
         if not _index_processed_operation(i, clone):
             if token.token_type == tokens.operator:
@@ -398,8 +396,7 @@ def _generate_powers(current, input_list):
                         clone.remove(left)
                         clone.remove(right)
                         clone.append(_IPower(left.start_index, right.end_index, left, right))
-    ret_list = []
-    ret_list.extend(clone)
+    ret_list = clone
     ret_list.sort(key=lambda x: x.start_index)
     return ret_list
 
@@ -424,15 +421,13 @@ def _generate_multiplication_and_division(current, input_list):
                         clone.remove(left)
                         clone.remove(right)
                         clone.append(_IDivision(left.start_index, right.end_index, left, right))
-    ret_list = []
-    ret_list.extend(clone)
+    ret_list = clone
     ret_list.sort(key=lambda x: x.start_index)
     return ret_list
 
 
 def _generate_addition_and_subtraction(current, input_list):
-    clone = []
-    clone.extend(current)
+    clone = current
     for i, token in enumerate(input_list):
         if not _index_processed_operation(i, clone):
             if token.token_type == tokens.operator:
@@ -450,8 +445,7 @@ def _generate_addition_and_subtraction(current, input_list):
                         clone.remove(left)
                         clone.remove(right)
                         clone.append(_ISubtraction(left.start_index, right.end_index, left, right))
-    ret_list = []
-    ret_list.extend(clone)
+    ret_list = clone
     ret_list.sort(key=lambda x: x.start_index)
     return ret_list
 
@@ -479,7 +473,7 @@ def _generate_intermediate(token_list) -> _Intermediate:
         raise ValueError("Unexpected error while generating intermediates")
 
 
-def parse(input_string):
+def parseOperation(input_string):
     _validate_string(input_string)
     token_list = tokenizer.tokenize(input_string)
     _validate_syntax(token_list)

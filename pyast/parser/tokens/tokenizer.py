@@ -3,7 +3,7 @@ from pyast.parser.tokens import tokens
 
 decimal = "."
 valid_numbers = "0123456789."
-operators = "+-*/^"
+operators = "+-*/^,"
 open_parenthesis = "("
 close_parenthesis = ")"
 
@@ -36,8 +36,7 @@ def _tokenize_numbers(input_string: str):
 
 
 def _tokenize_operators(token_list, input_string: str):
-    ret_list = []
-    ret_list.extend(token_list)
+    ret_list = token_list
     for i, v in enumerate(input_string):
         if not tokens.index_processed(i, ret_list):
             if v in operators:
@@ -49,8 +48,7 @@ def _tokenize_operators(token_list, input_string: str):
 
 
 def _tokenize_parentheses(token_list, input_string: str):
-    ret_list = []
-    ret_list.extend(token_list)
+    ret_list = token_list
     for i, v in enumerate(input_string):
         if not tokens.index_processed(i, ret_list):
             if v in open_parenthesis:
@@ -67,8 +65,7 @@ def _tokenize_parentheses(token_list, input_string: str):
 
 
 def _tokenize_text(token_list, input_string: str):
-    ret_list = []
-    ret_list.extend(token_list)
+    ret_list = token_list
     accumulated = ""
     for i, v in enumerate(input_string):
         if tokens.index_processed(i, ret_list):
@@ -165,7 +162,7 @@ def _tokenize_variables(token_list):
     return ret_list
 
 
-def _justify_mutliplication(input_list):
+def _justify_multiplication(input_list):
     ret_list = []
     for i, curr in enumerate(input_list):
         ret_list.append(curr)
@@ -201,7 +198,7 @@ def _collapse_signs(input_list):
 
 
 def _post_process(token_list):
-    curr_list = _justify_mutliplication(token_list)
+    curr_list = _justify_multiplication(token_list)
     collapsed = _collapse_signs(curr_list)
     while len(collapsed) != len(curr_list):
         curr_list = collapsed

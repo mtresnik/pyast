@@ -26,7 +26,7 @@ class Log(Operation):
         cmath.log(self.inner.to_number(), self.base.to_number())
 
     def to_string(self):
-        return "".join(["log(", str(self.base), ",", str(self.inner), ")"])
+        return "".join(["log_(", str(self.base), ",", str(self.inner), ")"])
 
     def evaluate(self, one, other):
         if self == one:

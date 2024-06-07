@@ -2,7 +2,7 @@ from math import floor
 from timeit import default_timer as timer
 import unittest
 
-from pyast.parser import parseOperation
+from pyast.parser import parse_operation
 
 
 class StressTest(unittest.TestCase):
@@ -19,7 +19,7 @@ class StressTest(unittest.TestCase):
         print(input_string)
         for i in range(num_iterations):
             start = timer()
-            operation = parseOperation(input_string)
+            operation = parse_operation(input_string)
             end = timer()
             times.append(floor((end - start) * 1000))
         print(times)

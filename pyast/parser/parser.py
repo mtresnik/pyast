@@ -473,7 +473,7 @@ def _generate_intermediate(token_list) -> _Intermediate:
         raise ValueError("Unexpected error while generating intermediates")
 
 
-def parseOperation(input_string):
+def parse_operation(input_string):
     _validate_string(input_string)
     token_list = tokenizer.tokenize(input_string)
     _validate_syntax(token_list)
